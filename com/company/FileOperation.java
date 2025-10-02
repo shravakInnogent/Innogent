@@ -5,10 +5,10 @@ import java.util.List;
 
 class FileOperation {
     void FileCreation() {
-        File fop = new File("student.ser");
+        File fop = new File("student.csv");
         try {
             if (fop.createNewFile()) {
-                System.out.println("File Created" + fop.getName());
+                System.out.println("File Created " + fop.getName());
             }
         } catch (IOException e) {
             System.out.println(e);
@@ -16,7 +16,7 @@ class FileOperation {
     }
 
     void RankersFileCreation() {
-        File fopr = new File("RankHolderStudent.ser");
+        File fopr = new File("RankHolderStudent.csv");
         try {
             if (fopr.createNewFile()) {
                 System.out.println("File Created " + fopr.getName());
@@ -28,7 +28,7 @@ class FileOperation {
 
     void writeInRankfile(List<Student> rankers) {
         try {
-            FileOutputStream fosr = new FileOutputStream("RankHolderStudent.ser");
+            FileOutputStream fosr = new FileOutputStream("RankHolderStudent.csv");
             ObjectOutputStream oosr = new ObjectOutputStream(fosr);
             oosr.writeObject(rankers.get(0));
             oosr.writeObject(rankers.get(1));
@@ -41,7 +41,7 @@ class FileOperation {
 
     void writeFile(List<Student> sObj, List<Address> aObj, List<Class> cObj) {
         try {
-            FileOutputStream fos = new FileOutputStream("student.ser");
+            FileOutputStream fos = new FileOutputStream("student.csv");
             ObjectOutputStream oops = new ObjectOutputStream(fos);
             for (Student s : sObj) {
                 oops.writeObject(s);
@@ -61,7 +61,7 @@ class FileOperation {
     void readFile() {
         Student s1 = null;
         try {
-            FileInputStream fis = new FileInputStream("student.ser");
+            FileInputStream fis = new FileInputStream("student.csv");
             ObjectInputStream ois = new ObjectInputStream(fis);
             s1 = (Student) ois.readObject();
             System.out.println(s1);
@@ -77,7 +77,7 @@ class FileOperation {
         Student s2 = null;
         Student s3 = null;
         try {
-            FileInputStream fisr = new FileInputStream("RankHolderStudent.ser");
+            FileInputStream fisr = new FileInputStream("RankHolderStudent.csv");
             ObjectInputStream ois = new ObjectInputStream(fisr);
             s1 = (Student) ois.readObject();
             System.out.println(s1);

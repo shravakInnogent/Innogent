@@ -262,6 +262,7 @@ public class StudentManagement {
                     c1.setCls(clss);
                     classObj.add(c1);
 
+                    System.out.println("Student details submitted.");
                     Collections.sort(stuObj, Comparator.comparingInt(Student::getMarks).reversed());// Sorting Students in descending order based on marks
                     op1.writeInRankfile(stuObj);
                     break;

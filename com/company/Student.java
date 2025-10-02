@@ -40,7 +40,7 @@ public class Student implements Serializable {
 
     public void setAge(int age)   throws InvalidAgeException {
         if(age > 18){
-            throw new InvalidAgeException("Age must be at least 18");
+            throw new InvalidAgeException("Age must be <= 18");
         }
         else {
             this.age = age;
