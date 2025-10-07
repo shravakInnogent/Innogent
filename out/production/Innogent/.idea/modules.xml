@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Assignment/Assignment.iml" filepath="$PROJECT_DIR$/Assignment/Assignment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Banking System/Banking System.iml" filepath="$PROJECT_DIR$/Banking System/Banking System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Innogent.iml" filepath="$PROJECT_DIR$/Innogent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OddEvenMultiThread/OddEvenMultiThread.iml" filepath="$PROJECT_DIR$/OddEvenMultiThread/OddEvenMultiThread.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProducerConsumer.java/ProducerConsumer.java.iml" filepath="$PROJECT_DIR$/ProducerConsumer.java/ProducerConsumer.java.iml" />
+    </modules>
+  </component>
+</project>
