@@ -1,13 +1,18 @@
 package com.innogent.demo.service;
 
+import com.innogent.demo.dto.StudentRequestDto;
+import com.innogent.demo.entity.Course;
 import com.innogent.demo.entity.Student;
+import com.innogent.demo.entity.StudentEnrollWrapper;
+import com.innogent.demo.repository.CourseRepo;
 import com.innogent.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class StudentService {
@@ -15,8 +20,11 @@ public class StudentService {
     @Autowired
     StudentRepository studentRepository;
 
-    public Student create( Student student){
-        return studentRepository.save(student);
+    @Autowired
+    private CourseRepo courseRepository;
+
+    public void create( Student student){
+        studentRepository.save(student);
     }
 
     public List<Student> getStudents(){
@@ -31,7 +39,8 @@ public class StudentService {
     public String update(Student student, Integer id){
         Student s  = getStudentById(id);
         s.setId(id);
-        s.setName(student.getName());
+        s.setFirstName(student.getFirstName());
+        s.setLastName(student.getLastName());
         s.setEmail(student.getEmail());
         studentRepository.save(s);
         return "SUCCESS";
@@ -41,5 +50,35 @@ public class StudentService {
         Student student1 =  getStudentById(id);
         studentRepository.delete(student1);
         return "Successfully Deleted.";
+    }
+
+    public Set<Student> stuList (String courseName){
+        return studentRepository.StudentByCourse(courseName);
+
+    }
+
+    public Set<Student> stuListByCityInstructor (String instructor, String city){
+        return studentRepository.StudentByCourseInstructor(instructor, city);
+
+    }
+
+    public void createStudentWithCourse(StudentRequestDto studentRequestDto){
+        Student s = new Student();
+        s.setFirstName(studentRequestDto.getFirstName());
+        s.setLastName(studentRequestDto.getLastName());
+        s.setEmail(studentRequestDto.getEmail());
+
+        if (studentRequestDto.getCourseIds() != null && !studentRequestDto.getCourseIds().isEmpty()) {
+            Set<Course> courses = new HashSet<>(
+                    courseRepository.findAllById(studentRequestDto.getCourseIds())
+            );
+            s.setCourses(courses);
+        }
+        studentRepository.save(s);
+    }
+
+
+    public void createStudentWithNewCourse(Student s){
+        studentRepository.save(s);
     }
 }
