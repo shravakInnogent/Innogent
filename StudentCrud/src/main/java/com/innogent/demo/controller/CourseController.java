@@ -1,6 +1,7 @@
 package com.innogent.demo.controller;
 
 import com.innogent.demo.dto.CourseWithStudentCount;
+import com.innogent.demo.dto.InstructorRequestDto;
 import com.innogent.demo.entity.Course;
 import com.innogent.demo.entity.Student;
 import com.innogent.demo.entity.StudentEnrollWrapper;
@@ -19,9 +20,9 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @PostMapping("/create")
-    public void create(@RequestBody Course course){
-        courseService.create(course);
+    @PostMapping("/createCourse")
+    public void createCourse(@RequestBody Course course){
+        courseService.createCourse(course);
     }
 
     @GetMapping("/getCourseByStudentName/{studentName}")
@@ -32,6 +33,11 @@ public class CourseController {
     @GetMapping("/getCount")
     public List<CourseWithStudentCount> getCount() {
         return courseService.getCount();
+    }
+
+    @PutMapping("/update/instructor")
+    public void  update(@RequestBody InstructorRequestDto updateInstructorObj){
+         courseService.updateInstructor(updateInstructorObj);
     }
 
 

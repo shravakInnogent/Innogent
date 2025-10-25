@@ -2,7 +2,9 @@ package com.libraryManagementSystem.controller;
 
 
 import com.libraryManagementSystem.Dto.BookRequestDto;
+import com.libraryManagementSystem.Dto.BookResponseDto;
 import com.libraryManagementSystem.Dto.BorrowRequestDto;
+import com.libraryManagementSystem.Dto.BorrowedResponseDto;
 import com.libraryManagementSystem.entity.Books;
 import com.libraryManagementSystem.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +36,19 @@ public class BookController {
     }
 
     @PutMapping("/updateBook/{id}")
-    public void updateBook(@RequestBody Books book ,@PathVariable long id){
+    public void updateBook(@RequestBody BookRequestDto book ,@PathVariable long id){
         bookService.updateBook(id, book);
     }
 
     @GetMapping("/available")
-    public ResponseEntity<List<BookRequestDto>> getAvailableBooks() {
+    public ResponseEntity<List<BookResponseDto>> getAvailableBooks() {
         return ResponseEntity.ok(bookService.getAvailableBooks());
+    }
+
+    @GetMapping("/borrowedBook")
+    public ResponseEntity<List<BorrowedResponseDto>> getAllBorrowedBooks() {
+        List<BorrowedResponseDto> borrowedBooks = bookService.getAllBorrowedBooks();
+        return ResponseEntity.ok(borrowedBooks);
     }
 
     @PostMapping("/borrow")

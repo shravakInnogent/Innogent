@@ -57,6 +57,12 @@ public class StudentService {
 
     }
 
+    public List<Student> getStudentsWithNoCourse(){
+        return studentRepository.getStudentsWithNoCourse();
+    }
+
+
+
     public Set<Student> stuListByCityInstructor (String instructor, String city){
         return studentRepository.StudentByCourseInstructor(instructor, city);
 

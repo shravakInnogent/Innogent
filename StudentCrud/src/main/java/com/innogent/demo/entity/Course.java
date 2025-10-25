@@ -3,7 +3,9 @@ package com.innogent.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.Set;
 @Entity
 @Data
 @Table(name = "course")
+@NoArgsConstructor
 public class Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id

@@ -12,7 +12,7 @@ import lombok.*;
 public class BookRequestDto {
     private String bookTitle;
     private String description;
-    private String bookAuthor;  // Just pass ID instead of entire Author object
+    private long authorId;
     private Integer stock;
     private Integer totalCopies;
 }

@@ -14,13 +14,13 @@ import java.util.List;
 public class Author {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     long authorId;
 
     String name;
 
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Books> books;
+    private List<Books> books = new ArrayList<>();
 
 }

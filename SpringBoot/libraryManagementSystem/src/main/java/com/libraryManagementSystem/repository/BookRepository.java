@@ -11,6 +11,10 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Books, Long>
 {
+
+    @Query("SELECT b FROM Books b JOIN b.members m")
+    List<Books> findAllBorrowedBooks();
+
     @Query("SELECT b FROM Books b WHERE b.stock > 0")
     List<Books> findAvailableBooks();
 }

@@ -22,4 +22,8 @@ public class MemberService {
                     "Member not found with id: " + id));
 
     }
+
+    public void delete(long id){
+        memberRepo.deleteById(id);
+    }
 }

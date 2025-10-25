@@ -1,7 +1,7 @@
 package com.innogent.demo.entity;
 
 import jakarta.persistence.*;
-        import lombok.Data;
+import lombok.Data;
 import java.util.HashSet;
 import java.util.Set;
 

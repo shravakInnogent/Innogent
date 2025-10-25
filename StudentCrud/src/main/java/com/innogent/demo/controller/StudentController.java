@@ -53,6 +53,10 @@ public class StudentController {
         return studentService.getStudentById(id);
     }
 
+    @GetMapping("/getStudentWithNoCourse")
+    public List<Student> studentWithNoCourse(){
+        return   studentService.getStudentsWithNoCourse();
+    }
 
     @PutMapping("/update/{id}")
     String update(@RequestBody Student student,

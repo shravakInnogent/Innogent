@@ -15,7 +15,7 @@ import java.util.Set;
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private long memberId;
 
     @Column
@@ -25,7 +25,7 @@ public class Member {
     String contactInfo;
 
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "borrowed_books",
             joinColumns = @JoinColumn(name = "member_id"),

@@ -1,6 +1,7 @@
 package com.innogent.demo.service;
 
 import com.innogent.demo.dto.CourseWithStudentCount;
+import com.innogent.demo.dto.InstructorRequestDto;
 import com.innogent.demo.entity.Course;
 import com.innogent.demo.entity.Student;
 import com.innogent.demo.entity.StudentEnrollWrapper;
@@ -24,7 +25,8 @@ public class CourseService {
     private StudentRepository studentRepository;
 
 
-    public void create(Course course) {
+
+    public void createCourse(Course course) {
         courseRepo.save(course);
     }
 
@@ -49,9 +51,16 @@ public class CourseService {
         return wrapper;
     }
 
+    public void updateInstructor(InstructorRequestDto instructorRequestDtoObj){
+        int id = instructorRequestDtoObj.getCourseId();
+        Course course = courseRepo.findById(id).get();
+        course.setInstructor(instructorRequestDtoObj.getInstructor());
+        courseRepo.save(course);
+
+    }
+
     public List<CourseWithStudentCount> getCount() {
         return courseRepo.getCourseStudentCounts();
     }
-
 }
 

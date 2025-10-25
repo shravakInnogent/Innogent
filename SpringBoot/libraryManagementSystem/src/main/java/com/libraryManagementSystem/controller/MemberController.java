@@ -22,4 +22,8 @@ public class MemberController {
         return memberService.getMemberById(id);
     }
 
+    @PostMapping("/delete/{id}")
+    public void delete(@PathVariable long id){
+        memberService.delete(id);
+    }
 }

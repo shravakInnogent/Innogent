@@ -3,9 +3,13 @@ package com.libraryManagementSystem.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.IdGeneratorType;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -26,21 +30,19 @@ public class Books {
     String description;
 
     @Column(nullable = false)
-    private Integer stock = 0;
+    private Integer stock ;
 
     @Column(nullable = false)
-    Integer totalCopies = 0;
+    Integer totalCopies;
 
 
-    @ManyToMany
-    @JoinTable(name = "books_member",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns=@JoinColumn(
-            name = "member_id"))
-    @JsonIgnore
-    private List<Member> members;
+    @ManyToMany(mappedBy = "borrowedBooks")
+    @ToString.Exclude           // Prevents infinite loop in toString()
+    @EqualsAndHashCode.Exclude  // Prevents infinite loop in equals/hashCode
+    @JsonIgnore                 // Prevents infinite loop in JSON serialization
+    private Set<Member> members = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
     @JoinColumn(name = "author_id")
     @JsonIgnore
     private Author author;

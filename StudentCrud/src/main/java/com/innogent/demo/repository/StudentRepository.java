@@ -19,4 +19,6 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     Set<Student> StudentByCourseInstructor(@Param("instructor") String instructor, @Param("city") String city);
 
 
+    @Query("SELECT DISTINCT s FROM Student s JOIN FETCH s.courses c WHERE c.courseId = null")
+    List<Student> getStudentsWithNoCourse();
 }
