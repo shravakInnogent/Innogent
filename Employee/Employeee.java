@@ -17,6 +17,7 @@ class Employee implements Comparable<Employee>{
     public int compareTo(Employee em){
         return Double.compare(em.salary, this.salary);
     }
+
     static class departmentNameSalaryComparator implements Comparator<Employee>{
         public int compare(Employee e1, Employee e2){
             int cmp = e1.department.compareTo(e2.department);
