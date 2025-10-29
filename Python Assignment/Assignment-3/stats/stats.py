@@ -1,6 +1,6 @@
 import numpy as np
-from service import *
-def show_stats_report():
+
+def show_stats_report(productList):
     print("\nInventory Statistics Report --")
 
     if not productList:

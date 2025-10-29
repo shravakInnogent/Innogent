@@ -10,14 +10,19 @@ def showDetails(proId):
             print(f"Product Id ", product.id)
             print(f"Title : ", product.proName)
             print(f"Stock : ", product.stock)
-            if product.tags == "Clearance":
+            if product.tags.lower() == "clearance":
                 print(f"Price : ", product.price / 2, "(50 % Discount)")
             else:
                 print(f"Price : ", product.price)
             print(f"Location : ", product.location)
             print(f"Tags : ", product.tags, "\n")
             return
-
+def lowStock():
+    for product in productList:
+        if product.stock < 5:
+            print(f"Warning ⚠️ Only {product.stock} quantity available of product, ID:", product.id)
+            return
+    print("All stock are available in large quantity.")
 def showAll():
     if not productList:
         print("No Products Found\n")
@@ -54,7 +59,7 @@ def updateStock(updateId, newStock):
 def totalValue():
     total = 0
     for product in productList:
-        if product.tags == "Clearance":
+        if product.tags.lower() == "clearance":
             total = total + product.price/2 * product.stock
         else:
             total += product.price * product.stock
@@ -64,7 +69,7 @@ def showClearanceStock():
     flag = 0
     print("Clearance Stock:")
     for product in productList:
-        if product.tags == "Clearance":
+        if product.tags.lower() == "clearance":
             flag = 1
             showDetails(product.id)
     if not flag  :
@@ -86,9 +91,9 @@ productList= [p1]
 print("Enter your choice:")
 
 choice = 0
-while choice != 7:
+while choice != 8:
     choice = int(input(
-        "1.Insert Product\n2.List All Products\n3.Delete Product\n4.Update Stock\n5.Total product value\n6.Clearance Stock\n7.Exit\n"))
+        "1.Insert Product\n2.Low Stock Check\n3.List All Products\n4.Delete Product\n5.Update Stock\n6.Total product value\n7.Clearance Stock\n8.Exit\n"))
     if choice == 1:
         print("Enter Product Details: Product Name, Stock, Price, Location, Tag")
         # proId = int(input())
@@ -99,18 +104,21 @@ while choice != 7:
         proLocation = input()
         proTags = input()
         addProduct(proId+1, proName, proStock, proPrice, proLocation, proTags)
+
     elif choice == 2:
-        showAll()
+        lowStock()
     elif choice == 3:
+        showAll()
+    elif choice == 4:
         deleteId = int(input("Enter Product ID To Delete That Product: "))
         deletePro(deleteId)
-    elif choice == 4:
+    elif choice == 5:
         updateId = int(input("Enter Product ID To Update : "))
         newStock = int(input("Enter Stock Value : "))
         updateStock(updateId,newStock)
-    elif choice == 5:
-        print(f"Toatal Product Value: {totalValue()}\n" )
     elif choice == 6:
-        showClearanceStock()
+        print(f"Toatal Product Value: {totalValue()}\n" )
     elif choice == 7:
+        showClearanceStock()
+    elif choice == 8:
         exit()

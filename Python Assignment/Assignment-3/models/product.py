@@ -8,4 +8,4 @@ class Product:
       self.tags  = tags
 
     def __str__(self):
-        return f"{self.proName} | Stock: {self.stock} | Price: ${self.price:.2f} | Location: {self.location} | Tag: {self.tags}"
+        return f"Id: {self.id} |Product Name : {self.proName} | Stock: {self.stock} | Price: ${self.price:.2f} | Location: {self.location} | Tag: {self.tags}"

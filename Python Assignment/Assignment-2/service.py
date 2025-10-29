@@ -29,13 +29,20 @@ def show_details(pro_id):
             print(f"Product Id ", product.id)
             print(f"Title : ", product.proName)
             print(f"Stock : ", product.stock)
-            if product.tags == "Clearance":
+            if product.tags.lower() == "Clearance":
                 print(f"Price : ", product.price / 2, "(50 % Discount)")
             else:
                 print(f"Price : ", product.price)
             print(f"Location : ", product.location)
             print(f"Tags : ", product.tags, "\n")
             return
+
+def lowStock():
+    for product in productList:
+        if product.stock < 5:
+            print(f"Warning ⚠️ Only {product.stock} quantity available of product, ID:", product.id)
+            return
+    print("All stock are available in large quantity.")
 
 def show_all():
     if not productList:
@@ -67,7 +74,7 @@ def update_stock(update_id, new_stock):
 def total_value():
     total = 0
     for product in productList:
-        if product.tags == "Clearance":
+        if product.tags.lower() == "Clearance":
             total = total + product.price/2 * product.stock
         else:
             total += product.price * product.stock
@@ -77,7 +84,7 @@ def show_clearance_stock():
     flag = 0
     print("Clearance Stock:")
     for product in productList:
-        if product.tags == "Clearance":
+        if product.tags.lower() == "Clearance":
             flag = 1
             show_details(product.id)
     if not flag  :
