@@ -31,7 +31,13 @@ class Inventory:
         else:
             product = Product(pro_id+1, pro_name, pro_stock, pro_price, pro_location, pro_tags)
         self.productList.append(product)
-
+        
+    def lowStock(self):
+        for product in self.productList:
+            if product.stock < 5:
+               print(f"Warning ⚠️ Only {product.stock} quantity available of product, ID:", product.id)
+               return
+        print("All stock are available in large quantity.")
     def show_details(self,pro_id):
         for product in self.productList:
             if product.id == pro_id :
